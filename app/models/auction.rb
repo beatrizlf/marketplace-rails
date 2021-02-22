@@ -3,4 +3,5 @@ class Auction < ApplicationRecord
   has_many :bids
   validates :name, presence: true 
   validates :description, presence: true
+  validates :min_price, presence: true
 end
