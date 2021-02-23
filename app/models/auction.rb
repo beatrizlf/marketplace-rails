@@ -21,11 +21,10 @@ class Auction < ApplicationRecord
       winner.update(winning_bid: true)
     end
   end
-
+  
   def self.finish_all_auctions
     Auction.all.each do |auction|
       auction.finish_auction
     end
   end
-
 end
