@@ -1,6 +1,11 @@
 <h1>Profiles#show</h1>
 <p>Find me in app/views/profiles/show.html.erb</p>
 
-<%= @user.first_name %>
+<%= current_user.first_name %>
 <p><%= @auctions.count  %> Quantidade de produtos</p>
 
+<% current_user.bids.where(winning_bid: true).each do |bid| %>
+  <p><%= bid.auction.name %></p>
+  <p><%= bid.auction.description %></p>
+  <p><%= bid.value %></p>
+<% end %>
