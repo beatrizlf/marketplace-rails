@@ -1,4 +1,5 @@
 class AuctionsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
   before_action :find_auction, only: [:show, :edit, :destroy]
   def index
     @auctions = Auction.all
@@ -13,7 +14,7 @@ class AuctionsController < ApplicationController
 
   def create
     @auction = Auction.new(auction_params)
-    if @auction.save 
+    if @auction.save
       redirect_to auction_path(@auction)
     else
       render :new
