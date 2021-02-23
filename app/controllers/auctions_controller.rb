@@ -23,15 +23,10 @@ class AuctionsController < ApplicationController
   def edit
   end
 
-  def destroy
-    @auction.destroy
-    redirect_to auctions_path
-  end
-
   def start_auction
     @auction = Auction.find(params[:format])
     @auction.set_visible_auction
-    @auction.save!
+    @auction.save
     redirect_to auction_path(@auction)
   end
 

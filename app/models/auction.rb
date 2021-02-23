@@ -12,5 +12,12 @@ class Auction < ApplicationRecord
 
   def set_visible_auction
     self.visible = true
-  end  
+  end
+
+  def finished?
+    if self.deadline > Date.today
+      self.visible = false
+    end
+  end
+
 end
