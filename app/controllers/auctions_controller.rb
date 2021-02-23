@@ -37,7 +37,7 @@ class AuctionsController < ApplicationController
   private
 
   def auction_params
-    params.require(:auction).permit(:name, :description, :category, :min_price, :deadline, photos: []) # colocar o visible?
+    params.require(:auction).permit(:name, :description, :category, :min_price, :deadline, photos: [])
   end
 
   def find_auction
