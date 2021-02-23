@@ -9,12 +9,8 @@ class Auction < ApplicationRecord
   validates :min_price, presence: true
   validates :category, presence: true, inclusion: { in: CATEGORIES }
   validates :deadline, presence: true
-<<<<<<< HEAD
-  # validates :visible?, inclusion: [true, false]
 
   def set_visible_auction
     self.visible = true
   end  
-=======
->>>>>>> 561a2ec2fb3fdd0538379c459a2e203b3684f7b7
 end
