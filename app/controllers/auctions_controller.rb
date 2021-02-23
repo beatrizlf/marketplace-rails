@@ -14,7 +14,7 @@ class AuctionsController < ApplicationController
   def create
     @auction = Auction.new(auction_params)
     if @auction.save 
-      redirect_to auction_path(@auction) # redirecionar para a página de show (auction ready)
+      redirect_to auction_path(@auction)
     else
       render :new
     end
@@ -32,7 +32,7 @@ class AuctionsController < ApplicationController
    # @auction = find_auction
     # @auction.start_auction
     # @auction.update!
- end
+ # end
 
   private
 
