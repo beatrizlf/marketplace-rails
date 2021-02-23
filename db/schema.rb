@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2021_02_22_195037) do
     t.string "category"
     t.string "min_price"
     t.datetime "deadline"
-    t.boolean "visible"
+    t.boolean "visible", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false

@@ -9,5 +9,4 @@ class Auction < ApplicationRecord
   validates :min_price, presence: true
   validates :category, presence: true, inclusion: { in: CATEGORIES }
   validates :deadline, presence: true
-
 end
