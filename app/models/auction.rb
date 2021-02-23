@@ -10,4 +10,10 @@ class Auction < ApplicationRecord
   validates :category, presence: true, inclusion: { in: CATEGORIES }
   validates :deadline, presence: true
 
+  def set_visible_auction
+    self.visible = true
+  end
+
+  
+
 end
