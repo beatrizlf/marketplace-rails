@@ -22,6 +22,8 @@ class AuctionsController < ApplicationController
   end
 
   def edit
+    @auction.user = current_user
+    redirect_to auction_path(@auction)
   end
 
   def start_auction
