@@ -1,13 +1,8 @@
 class PagesController < ApplicationController
+  skip_before_action :authenticate_user!, only: :home
+
   def home
+    @auctions = Auction.all.sample(3)
   end
 
-  def index
-  end
-
-  def show
-  end
-
-  def my_profile
-  end
 end
