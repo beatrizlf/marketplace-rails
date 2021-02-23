@@ -16,7 +16,7 @@ class AuctionsController < ApplicationController
     if @auction.save 
       redirect_to auction_path(@auction) # redirecionar para a página de show (auction ready)
     else
-      redirect_to auction_path(@action) # redirecionar para a página de edit (revisar os detalhes antes do leilao)
+      render :new
     end
   end
 
@@ -27,6 +27,12 @@ class AuctionsController < ApplicationController
     @auction.destroy
     redirect_to auctions_path
   end
+
+  # def start_auction
+   # @auction = find_auction
+    # @auction.start_auction
+    # @auction.update!
+ end
 
   private
 
