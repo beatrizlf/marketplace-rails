@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   resources :pages, only: [:index, :show, :my_profile]
   resources :auctions
   resources :bids, only: [:index, :new, :create]
+
+  post 'start_auction', to: "auctions#start_auction"
 end

@@ -8,7 +8,7 @@ class Auction < ApplicationRecord
   validates :deadline, presence: true
   # validates :visible?, inclusion: [true, false]
 
-  def self.start_auction
+  def set_visible_auction
     self.visible = true
-  end
+  end  
 end
