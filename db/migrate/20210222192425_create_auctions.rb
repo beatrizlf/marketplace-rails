@@ -6,7 +6,8 @@ class CreateAuctions < ActiveRecord::Migration[6.0]
       t.string :category
       t.string :min_price
       t.datetime :deadline
-      t.boolean :visible
+      t.boolean :visible, default: false
+      t.boolean :finished, default: false
 
       t.timestamps
     end

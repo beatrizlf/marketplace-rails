@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="mt-4 p-3">
+    <h1>Auctions#show</h1>
+    <p>Find me in app/views/auctions/show.html.erb</p>
+
+
+      <h2><%= @auction.name %></h2>
+      <p><%= @auction.description %></p>
+      <p><%= @auction.min_price %></p>
+
+      <% unless @auction.visible %>
+        <%= link_to 'Edit Auction', edit_auction_path(@auction), class: "btn btn-secondary" %>
+
+        <%= link_to "Start Auction", start_auction_path(@auction), method: :post, class: 'btn btn-primary' %>
+        <% else %> 
+        <p>Começou o leilão!</p>
+      <% end %>
+  </div>
+</div>
