@@ -13,7 +13,8 @@ class AuctionsController < ApplicationController
 
   def create
     @auction = Auction.new(auction_params)
-    if @auction.save 
+    @auction.user = current_user
+    if @auction.save
       redirect_to auction_path(@auction)
     else
       render :new
