@@ -19,5 +19,4 @@ class Auction < ApplicationRecord
       self.visible = false
     end
   end
-
 end
