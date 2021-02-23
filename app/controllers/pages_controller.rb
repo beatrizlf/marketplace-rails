@@ -4,5 +4,4 @@ class PagesController < ApplicationController
   def home
     @auctions = Auction.all.sample(3)
   end
-
 end
