@@ -25,6 +25,8 @@ gem 'devise'
 
 gem 'rb-readline'
 
+gem 'faker'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
