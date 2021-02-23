@@ -23,21 +23,17 @@ class AuctionsController < ApplicationController
   def edit
   end
 
-  def destroy
-    @auction.destroy
-    redirect_to auctions_path
+  def start_auction
+    @auction = Auction.find(params[:format])
+    @auction.set_visible_auction
+    @auction.save
+    redirect_to auction_path(@auction)
   end
-
-  # def start_auction
-   # @auction = find_auction
-    # @auction.start_auction
-    # @auction.update!
- # end
 
   private
 
   def auction_params
-    params.require(:auction).permit(:name, :description, :category, :min_price, :deadline, photos: []) # colocar o visible?
+    params.require(:auction).permit(:name, :description, :category, :min_price, :deadline, photos: [])
   end
 
   def find_auction
