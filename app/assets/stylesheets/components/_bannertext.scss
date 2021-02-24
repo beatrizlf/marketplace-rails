@@ -1,5 +1,7 @@
 .text p {
   color: black;
+  font-size: 25px;
+
 }
 
 .container2 {
@@ -11,7 +13,6 @@
 .banner {
   background-size: cover;
   background-position: center;
-  // padding: 500px 0;
 }
 
 .banner h1 {
@@ -23,7 +24,7 @@
 }
 
 .banner p {
-  font-size: 20px;
+  font-size: 25px;
   color: white;
   opacity: .7;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
@@ -33,4 +34,8 @@
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
+}
+
+h2 {
+  text-align: center;
 }
