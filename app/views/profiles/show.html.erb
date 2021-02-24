@@ -4,3 +4,10 @@
 <%= @user.first_name %>
 <p><%= @auctions.count  %> Quantidade de produtos</p>
 
+<div>
+  <% if cl_image_tag @user.photo.attached? %>
+    <%= image_tag @user.photo, height: 300, width: 400, crop: :fill %>
+  <% end %>
+</div>
+
+
