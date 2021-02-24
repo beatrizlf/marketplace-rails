@@ -1,6 +1,11 @@
 <h1>Auctions#index</h1>
 <p>Find me in app/views/auctions/index.html.erb</p>
 <%= link_to 'Create Auction', new_auction_path %>
+<div class="container mydiv">
+  <div class="row">
+    <% @auctions.each do |auction| %>
+      <%= render 'shared/index_card', auction: auction %>
+    <% end %>
+  </div>
+</div>
 
-
-<%= render 'shared/index_card' %>

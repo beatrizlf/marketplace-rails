@@ -4,18 +4,19 @@
 <%= current_user.first_name %>
 <p><%= @auctions.count  %> Quantidade de produtos</p>
 
-<<<<<<< HEAD
+
 <div>
-  <% if cl_image_tag @user.photo.attached? %>
-    <%= image_tag @user.photo, height: 300, width: 400, crop: :fill %>
+  <% if current_user.photo.attached? %>
+    <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
   <% end %>
 </div>
 
 
-=======
+
 <% current_user.bids.where(winning_bid: true).each do |bid| %>
   <p><%= bid.auction.name %></p>
   <p><%= bid.auction.description %></p>
   <p><%= bid.value %></p>
 <% end %>
->>>>>>> 54a94248423d9b0cf631e1b51d0648ce45ee77dc
+
+
