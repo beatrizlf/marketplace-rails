@@ -2,9 +2,5 @@
 
 <%= link_to 'Create Auction', new_auction_path, class: "btn btn-primary" %>
 
-<% @auctions.each do |auction| %>
-  <h2><%= auction.name %><h2>
-  <p><%= auction.description %></p>
-  <p><%= auction.min_price %></p>
-<% end %>
-<%#= render 'shared/index_card' %>
+
+<%= render 'shared/index_card' %>
