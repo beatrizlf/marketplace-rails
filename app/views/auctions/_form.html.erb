@@ -4,5 +4,6 @@
   <%= f.input :category, collection: Auction::CATEGORIES %>
   <%= f.input :min_price %>
   <%= f.input :deadline %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.submit %>
 <% end %>

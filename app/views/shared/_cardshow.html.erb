@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="card py-3">
+    <div class="row">
+      <div class="col-md-6 text-center align-self-center"> 
+      <% if auction.photos.attached? %>
+        <%= cl_image_tag auction.photos.first.key, height: 300, width: 400, crop: :fill %>
+      <% end %>
+      </div>
+      <div class="col-md-6 info">
+        <div class="row title">
+          <div class="col">
+            <h2><%= auction.name %></h2>
+          </div>
+          <div class="col text-right"><a href="#"><i class="fa fa-heart-o"></i></a></div>
+        </div>
+        <p><%= auction.description %></p>
+        <p><%= "$ #{auction.min_price},00" %></p>
+        <% unless auction.visible %>
+        <%= link_to 'Back to Auctions', auctions_path, class: 'btn btn-success' %>
+        <%= link_to 'Edit Auction', edit_auction_path(auction), class: "btn btn-secondary" %>
+        <%= link_to "Start Auction", start_auction_path(auction), method: :post, class: 'btn btn-primary' %>
+        <% else %> 
+          <p>Começou o leilão!</p>
+          <button class='btn btn-warning'>
+              <%= "Fim do Leilão: #{auction.deadline.strftime("%b %d, %Y %H:%M")}" %>
+          </button>
+
+        <% end %>
+  </div>
+  </div>
+ </div>
+
+ 
