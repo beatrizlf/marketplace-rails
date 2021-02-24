@@ -2,7 +2,7 @@ class Auction < ApplicationRecord
   CATEGORIES = ['Hot Toys', 'Mezco', 'Neca', 'Mafex', 'Iron Studios', 'Bandai']
   has_many :bids
   belongs_to :user
-  # has_many_attached :photos
+  has_many_attached :photos
 
   validates :name, presence: true
   validates :description, presence: true, length: { minimum: 10 }
@@ -21,11 +21,10 @@ class Auction < ApplicationRecord
       winner.update(winning_bid: true)
     end
   end
-
+  
   def self.finish_all_auctions
     Auction.all.each do |auction|
       auction.finish_auction
     end
   end
-
 end
