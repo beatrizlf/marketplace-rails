@@ -20,8 +20,14 @@
         <%= link_to 'Edit Auction', edit_auction_path(auction), class: "btn btn-secondary" %>
         <%= link_to "Start Auction", start_auction_path(auction), method: :post, class: 'btn btn-primary' %>
         <% else %> 
-        <p>Começou o leilão!</p>
-      <% end %>
+          <p>Começou o leilão!</p>
+          <button class='btn btn-warning'>
+              <%= "Fim do Leilão: #{auction.deadline.strftime("%b %d, %Y %H:%M")}" %>
+          </button>
+
+        <% end %>
   </div>
   </div>
  </div>
+
+ 
