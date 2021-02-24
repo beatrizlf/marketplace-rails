@@ -1,8 +1,27 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<div class='container'>
+  <h1>Meus dados pessoais</h1>
 
-<%= current_user.first_name %>
-<p><%= @auctions.count  %> Quantidade de produtos</p>
+
+
+  <h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
+  <p>Email: <%= current_user.email %></p>
+  <p>Endereço: <%= current_user.address %></p>
+
+  <div>
+    <% if cl_image_tag @user.photo.attached? %>
+      <%= image_tag @user.photo, height: 300, width: 400, crop: :fill %>
+    <% end %>
+  </div>
+
+  <h3>Você tem <%= @auctions.count %> produtos à venda</h3>
+
+  <h3>Histórico de compras</h3>
+  <% current_user.bids.where(winning_bid: true).each do |bid| %>
+    <p><%= bid.auction.name %></p>
+    <p><%= bid.auction.description %></p>
+    <p><%= bid.value %></p>
+  <% end %>
+</div>
 
 
 <div>
@@ -18,5 +37,4 @@
   <p><%= bid.auction.description %></p>
   <p><%= bid.value %></p>
 <% end %>
-
 
