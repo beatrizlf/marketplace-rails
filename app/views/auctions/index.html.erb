@@ -5,7 +5,7 @@
 <div class="container mydiv">
   <div class="row">
     <% @auctions.each do |auction| %>
-      <%= render 'shared/index_card', auction: auction %>
+      <%= render 'card', auction: auction %>
     <% end %>
   </div>
 </div>
