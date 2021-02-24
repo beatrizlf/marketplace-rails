@@ -1,6 +1,10 @@
-<h1>Auctions#index</h1>
-<p>Find me in app/views/auctions/index.html.erb</p>
-<%= link_to 'Create Auction', new_auction_path %>
+<h1>All Auctions</h1>
 
+<%= link_to 'Create Auction', new_auction_path, class: "btn btn-primary" %>
 
-<%= render 'shared/index_card' %>
+<% @auctions.each do |auction| %>
+  <h2><%= auction.name %><h2>
+  <p><%= auction.description %></p>
+  <p><%= auction.min_price %></p>
+<% end %>
+<%#= render 'shared/index_card' %>
