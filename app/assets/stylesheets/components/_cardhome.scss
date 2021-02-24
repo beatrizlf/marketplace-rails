@@ -1,3 +1,18 @@
-.container {
-  height: 200px;
+.card-image {
+  background-size: cover;
+  background-position: center;
+}
+
+.pricetag {
+  margin-left: 125px;
+}
+
+.card-img-top {
+  object-fit: cover;
+  background-size: cover;
+  height: 350px;
+}
+
+.card-main {
+  background-color: #F3F8F2;
 }
