@@ -1,0 +1,8 @@
+<%= simple_form_for(@auction) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :category, collection: Auction::CATEGORIES %>
+  <%= f.input :min_price %>
+  <%= f.input :deadline %>
+  <%= f.submit %>
+<% end %>
