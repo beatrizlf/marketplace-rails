@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="mt-4 p-3">
+    <h1>Auctions#edit</h1>
+    <p>Edit auction</p>
+    <%= simple_form_for(@auction) do |f| %>
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.input :category, collection: Auction::CATEGORIES %>
+      <%= f.input :min_price %>
+      <%= f.input :deadline %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
