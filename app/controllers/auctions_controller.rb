@@ -1,6 +1,7 @@
 class AuctionsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
-  before_action :find_auction, only: [:show, :edit, :destroy]
+  before_action :find_auction, only: [:show, :edit, :destroy, :update]
+
   def index
     @auctions = Auction.all
   end
@@ -23,8 +24,18 @@ class AuctionsController < ApplicationController
   end
 
   def edit
-    @auction.user = current_user
-    redirect_to auction_path(@auction)
+   # @auction.user = current_user
+     # redirect_to auction_path(@auction)
+  end
+
+  def update
+    if @auction.update(auction_params)
+      redirect_to auction_path(@auction)
+      flash[:notice] = 'Infos atualizadas'
+    else
+      render :edit
+      flash[:notice] = 'Verifique as infos'
+    end
   end
 
   def start_auction
