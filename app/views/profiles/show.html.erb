@@ -2,6 +2,7 @@
   <h1>Meus dados pessoais</h1>
 
 
+
   <h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
   <p>Email: <%= current_user.email %></p>
   <p>Endereço: <%= current_user.address %></p>
@@ -21,4 +22,19 @@
     <p><%= bid.value %></p>
   <% end %>
 </div>
+
+
+<div>
+  <% if current_user.photo.attached? %>
+    <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
+</div>
+
+
+
+<% current_user.bids.where(winning_bid: true).each do |bid| %>
+  <p><%= bid.auction.name %></p>
+  <p><%= bid.auction.description %></p>
+  <p><%= bid.value %></p>
+<% end %>
 
