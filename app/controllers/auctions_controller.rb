@@ -8,6 +8,7 @@ class AuctionsController < ApplicationController
 
   def show
     @bid = Bid.new
+    @min_value = @auction.best_bid&.value || @auction.min_price
   end
 
   def new
