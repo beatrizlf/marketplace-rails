@@ -1,6 +1,6 @@
 class Auction < ApplicationRecord
-  CATEGORIES = ['Hot Toys', 'Mezco', 'Neca', 'Mafex', 'Iron Studios', 'Bandai']
-  has_many :bids
+  CATEGORIES = ['Hasbro', 'Mattel', 'McFarlane Toys', 'Hot Toys', 'Mezco', 'Neca', 'Mafex', 'Iron Studios', 'Bandai']
+  has_many :bids, through: :users
   belongs_to :user
   has_many_attached :photos
 
