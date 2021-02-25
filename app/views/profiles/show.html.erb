@@ -2,11 +2,25 @@
   <h1 class="text-center mt-5">Welcome, <%= "#{current_user.first_name} #{current_user.last_name}!"%></h1>
   <div class="row py-4 my-4 w-100 d-flex justify-content-between">
     <div class="auction_container col-3 bg-light mr-1 p-2 d-flex flex-wrap justify-content-center">
-      <div class="d-flex justify-content-center"><%= cl_image_tag(current_user.photo.key, :transformation=>[
-        {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"crop"},
-        {:width=>200, :crop=>"scale"}
-        ],class:"avatar_profile py-3") %>
-      </div>
+      <% if current_user.photo.attached? %>
+        <div class="d-flex justify-content-center">
+          <%= cl_image_tag(current_user.photo.key, :transformation=>[
+          {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"crop"},
+          {:width=>200, :crop=>"scale"}
+          ],class:"avatar_profile py-3") %>
+        </div>
+      <% else %>
+
+        <div class="d-flex justify-content-center">
+          <%= cl_image_tag("04u12nv8sqw0utukzeh7e6azm9rp", :transformation=>[
+          {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"crop"},
+          {:width=>200, :crop=>"scale"}
+          ],class:"avatar_profile py-3") %>
+        </div>
+
+      <% end %>
+
+
 
       <div class="w-100">
         <h3 class="p-2"><%= "#{current_user.first_name} #{current_user.last_name}" %></h3>
@@ -24,6 +38,41 @@
         <%= link_to 'Edit', edit_user_registration_path, class:'btn btn-primay' %>
       </div>
     </div>
+  </div>
+
+
+  <div class="row py-4 my-4 bg-light">
+    <h1>My Auctions</h1>
+      <p>Você tem <%= @auctions.count %> produtos à venda</p>
+       <div class="d-flex justify-content-center mb-3">
+      <% current_user.auctions.each do |auction| %>
+        <div class="card m-2 card-main" style="width: 22rem;">
+          <div class="card-image">
+             <%= cl_image_tag auction.photos.first.key, class: 'card-img-top' %>
+
+           <div class="card-body">
+            <a class="card-link card-title">
+              <h5 class="card-title"><%= auction.name %></h5>
+              <p>This figure is from <%= auction.category %>. <%= auction.description %>.</p>
+                </a>
+                <hr>
+            <div class="d-flex">
+             <%= link_to 'See details', auction_path(auction) %>
+              <p class="pricetag mt-1">USD <%= auction.min_price %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+
+   <div class="row py-4 my-4 bg-light">
+   <h1>My Bids</h1>
+    <% current_user.bids.where(winning_bid: true).each do |bid| %>
+      <p><%= bid.auction.name %></p>
+      <p><%= bid.auction.description %></p>
+      <p><%= bid.value %></p>
+    <% end %>
   </div>
 
   <div class="text"><h1>My Auctions</h1></div>
