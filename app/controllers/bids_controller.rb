@@ -19,7 +19,7 @@ class BidsController < ApplicationController
       @bid.save
       redirect_to auction_path(@auction), notice: "Parabéns! Seu lance foi computado!"
     else
-      flash.now[:alert] = 'Erro! Lance deve ser maior que o valor mínimo!'
+      flash.now[:alert] = 'Erro! Lance deve ser maior que o último lance!'
       render "auctions/show"
     end
   end
