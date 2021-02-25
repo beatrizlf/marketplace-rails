@@ -14,11 +14,18 @@ class BidsController < ApplicationController
     @auction = @bid.auction
     @bid.winning_bid = false
     @bid.user = current_user
-    if @bid.save
+    if @bid.value > @auction.min_price
+      @bid.save
       redirect_to auction_path(@auction), notice: "Parabéns! Seu lance foi computado!"
     else
       render :new
+      # notice: 'Erro! Lance deve ser maior que o valor mínimo!'
     end
+  end
+
+  def winner
+    @bid.value = 
+    winning_bid = true
   end
 
   private
