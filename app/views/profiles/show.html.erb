@@ -1,40 +1,47 @@
-<div class='container'>
-  <h1>Meus dados pessoais</h1>
+<div class="container">
+  <h1>Welcome, <%= "#{current_user.first_name} #{current_user.last_name}!"%></h1>
+  <div class="row py-4 my-4 w-100 d-flex justify-content-between">
+    <div class="auction_container col-3 bg-light mr-1 p-2 d-flex flex-wrap justify-content-center">
+      <div class="d-flex justify-content-center"><%= cl_image_tag(current_user.photo.key, :transformation=>[
+        {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"crop"},
+        {:width=>200, :crop=>"scale"}
+        ],class:"avatar_profile py-3") %>
+      </div>
 
+      <div class="w-100">
+        <h3 class="p-2"><%= "#{current_user.first_name} #{current_user.last_name}" %></h3>
+      </div>
+    </div>
 
+    <div class="auction_container col-8 bg-light ml-1">
+      <div class="row d-block">
+        <h1 class="text-center">Account Details</h1>
+      </div>
 
-  <h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
-  <p>Email: <%= current_user.email %></p>
-  <p>Endereço: <%= current_user.address %></p>
-
-  <div>
-    <% if cl_image_tag @user.photo.attached? %>
-      <%= image_tag @user.photo, height: 300, width: 400, crop: :fill %>
-    <% end %>
+      <div>
+        <p>Email: <%= current_user.email  %></p>
+        <p>Endereço: <%= current_user.address %></p>
+        <%= link_to 'Edit', edit_user_registration_path, class:'btn btn-primay' %>
+      </div>
+    </div>
   </div>
 
-  <h3>Você tem <%= @auctions.count %> produtos à venda</h3>
+  <div class="row py-4 my-4 bg-light">
+    <h1>My Auctions</h1>
+      <p>Você tem <%= @auctions.count %> produtos à venda</p>
+      <% current_user.bids.where(winning_bid: true).each do |bid| %>
+        <p><%= bid.auction.name %></p>
+        <p><%= bid.auction.description %></p>
+        <p><%= bid.value %></p>
+      <% end %>
+  </div>
 
-  <h3>Histórico de compras</h3>
-  <% current_user.bids.where(winning_bid: true).each do |bid| %>
-    <p><%= bid.auction.name %></p>
-    <p><%= bid.auction.description %></p>
-    <p><%= bid.value %></p>
-  <% end %>
+  <div class="row py-4 my-4 bg-light">
+    <h1>My Bids</h1>
+    <% current_user.bids.where(winning_bid: true).each do |bid| %>
+      <p><%= bid.auction.name %></p>
+      <p><%= bid.auction.description %></p>
+      <p><%= bid.value %></p>
+    <% end %>
+  </div>
 </div>
-
-
-<div>
-  <% if current_user.photo.attached? %>
-    <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
-  <% end %>
-</div>
-
-
-
-<% current_user.bids.where(winning_bid: true).each do |bid| %>
-  <p><%= bid.auction.name %></p>
-  <p><%= bid.auction.description %></p>
-  <p><%= bid.value %></p>
-<% end %>
-

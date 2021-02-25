@@ -25,9 +25,9 @@ puts 'Creating auctions...'
     user_id: User.last.id,
     name: "#{Faker::Superhero.name}",
     description: "#{Faker::TvShows::MichaelScott.quote}",
-    category: ['Hot Toys', 'Mezco', 'Neca', 'Mafex', 'Iron Studios', 'Bandai'].sample,
+    category: ['Hasbro', 'Mattel', 'McFarlane Toys', 'Hot Toys', 'Mezco', 'Neca', 'Mafex', 'Iron Studios', 'Bandai'].sample,
     min_price: (10..800).to_a.sample,
-    deadline: Faker::Date.between(from: '2014-09-23', to: '2014-09-25')
+    deadline: Faker::Date.between(from: '2021-02-01', to: '2021-12-30')
   )
 end
 

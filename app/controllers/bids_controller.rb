@@ -9,15 +9,18 @@ class BidsController < ApplicationController
   end
 
   def create
-    @bid = Bid.new
-    @auction = Auction.find(params[:auction_id])
-    @bid.auction = @auction
+    @bid = Bid.new(bid_params)
+    @bid.auction_id = params[:auction_id]
+    @auction = @bid.auction
+    @bid.winning_bid = false
     @bid.user = current_user
-
-    if @bid.save
-      redirect_to bids_path(@auction)
+    @min_value = @auction.best_bid&.value || @auction.min_price
+    if @bid.value.to_i > @min_value.to_i
+      @bid.save
+      redirect_to auction_path(@auction), notice: "Parabéns! Seu lance foi computado!"
     else
-      render :new
+      flash.now[:alert] = 'Erro! Lance deve ser maior que o último lance!'
+      render "auctions/show"
     end
   end
 
@@ -28,6 +31,6 @@ class BidsController < ApplicationController
   end
 
   def bid_params
-    params.require(:bid).permit(:value)
+    params.require(:bid).permit(:value, :auction_id)
   end
 end

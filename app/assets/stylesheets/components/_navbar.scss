@@ -1,13 +1,16 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: $blue;
+  position: sticky;
+  top: 0;
+  z-index:1;
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
 
-p {
+.navbar p {
   color: $gold;
   font-size: 33px;
   margin-top: 10px;

@@ -1,12 +1,14 @@
 class AuctionsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :find_auction, only: [:show, :edit, :destroy, :update]
 
   def index
-    @auctions = Auction.all
+    @auctions = Auction.where(visible: true)
   end
 
   def show
+    @bid = Bid.new
+    @min_value = @auction.best_bid&.value || @auction.min_price
   end
 
   def new
@@ -24,8 +26,6 @@ class AuctionsController < ApplicationController
   end
 
   def edit
-   # @auction.user = current_user
-     # redirect_to auction_path(@auction)
   end
 
   def update

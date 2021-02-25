@@ -1,16 +1,5 @@
 <div class="container">
   <div class="mt-4 p-3">
-      <h1><%= @auction.name %></h1>
-      <p><%= @auction.description %></p>
-      <p><%= @auction.category %></p>
-      <p><%= @auction.min_price %></p>
-
-      <% unless @auction.visible %>
-        <%= link_to 'Edit Auction', edit_auction_path(@auction), class: "btn btn-secondary" %>
-
-        <%= link_to "Start Auction", start_auction_path(@auction), method: :post, class: 'btn btn-primary' %>
-        <% else %> 
-        <p>Começou o leilão!</p>
-      <% end %>
+     <%= render 'shared/cardshow', auction: @auction %>
   </div>
 </div>
