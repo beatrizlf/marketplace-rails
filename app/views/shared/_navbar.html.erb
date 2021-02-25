@@ -1,6 +1,6 @@
 <% if current_user %>
   <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-    <p class="ml-3" href=<%= root_path %> /> <strong>Auction Figures</strong></p>
+    <p <strong> class="ml-3" <%= link_to 'Auction Figures'root_path %> </strong></p>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -21,9 +21,10 @@
             <img class="avatar dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://res.cloudinary.com/diarvpaib/image/upload/v1614176532/img2_uo6kq7.jpg"/>
           <% end %>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a id="listnav" class="dropdown-item" href=<%= link_to 'Dashboard', profiles_show_path %> /> Dashboard</a>
-              <a id="listnav" class="dropdown-item" href=<%= link_to 'Edit Info', edit_user_registration_path %> /> Edit Info</a>
-              <a id="listnav" class="dropdown-item" href=<%= link_to 'Sign-out', destroy_user_session_path, method: :delete %> /> Log Out</a>
+              <a id="listnav" class="dropdown-item" <%= link_to 'Dashboard', profiles_path %>
+              <a id="listnav" class="dropdown-item" <%= link_to 'Edit Info', edit_user_registration_path %>
+              <a id="listnav" class="dropdown-item" <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
+
             </div>
         </li>
       </ul>
