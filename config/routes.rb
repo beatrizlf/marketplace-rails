@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :pages, only: [:index, :show, :my_profile]
-  resources :auctions, except: [:destroy]
-  resources :bids, only: [:index, :new, :create]
+  resources :auctions, except: [:destroy] do 
+    resources :bids, only: [:index, :new, :create]
+  end
 
 
   post 'start_auction', to: "auctions#start_auction"

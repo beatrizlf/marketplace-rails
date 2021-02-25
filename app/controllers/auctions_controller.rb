@@ -1,12 +1,13 @@
 class AuctionsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :find_auction, only: [:show, :edit, :destroy, :update]
 
   def index
-    @auctions = Auction.where(visible: true)
+    @auctions = Auction.all
   end
 
   def show
+    @bid = Bid.new
   end
 
   def new

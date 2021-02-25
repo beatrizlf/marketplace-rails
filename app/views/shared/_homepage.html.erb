@@ -21,61 +21,30 @@
     <h3>Nossos leilões mais quentes...</h3>
     </div>
 
-    <div class="d-flex justify-content-center flex-wrap mb-3">
-        <div class="card m-2 card-main" style="width: 22rem;">
-          <div class="card-image">
-            <img class="card-img-top" src="https://res.cloudinary.com/diarvpaib/image/upload/v1614181731/Shiro-Action-Figure.jpg_lj7bff.jpg">
-          </div>
-          <div class="card-body">
-            <a class="card-link card-title">
-              <h5 class="card-title">Action Figure 1</h5>
-              <p>This figure is from Bandai. Its a rare colection from 1987.</p>
-            </a>
-            <hr>
-            <div class="d-flex">
-              <a class="card-link mt-1" href="https://res.cloudinary.com/diarvpaib/image/upload/v1614176532/img2_uo6kq7.jpg">
-                <%= link_to 'See details', auction_path(@auctions), class: "nav-link" %></a>
-              <p class="pricetag mt-1">USD300</p>
-            </div>
-          </div>
-        </div>
 
+    <div class="d-flex justify-content-center mb-3">
+      <% @auctions.each do |auction| %>
         <div class="card m-2 card-main" style="width: 22rem;">
           <div class="card-image">
+            <% if auction.photos.any? %>
+            <%= cl_image_tag auction.photos.first.key, class: 'card-img-top' %>
+            <% else %>
             <img class="card-img-top" src="https://res.cloudinary.com/diarvpaib/image/upload/v1614176532/img2_uo6kq7.jpg">
+            <% end %>
           </div>
-          <div class="card-body">
-            <a class="card-link card-title">
-              <h5 class="card-title"> Action 2</h5>
-                <p>This figure is from Bandai. Its a rare colection from 1987.</p>
-            </a>
-            <hr>
-            <div class="d-flex">
-              <a class="card-link mt-1" href="https://res.cloudinary.com/diarvpaib/image/upload/v1614176532/img2_uo6kq7.jpg">
-                <%= link_to 'See details', auction_path(@auctions), class: "nav-link" %></a>
-              <p class="pricetag mt-1">USD5300</p>
-            </div>
-          </div>
-        </div>
 
-        <div class="card m-2 card-main" style="width: 22rem;">
-          <div class="card-image">
-            <img class="card-img-top" src="https://res.cloudinary.com/diarvpaib/image/upload/v1614176532/img1_dncvuz.jpg">
-          </div>
           <div class="card-body">
             <a class="card-link card-title">
-              <h5 class="card-title"> Action 2</h5>
-                <p>This figure is from Bandai. Its a rare colection from 1987.</p>
-            </a>
-            <hr>
+              <h5 class="card-title"><%= auction.name %></h5>
+              <p>This figure is from <%= auction.category %>. <%= auction.description %>.</p>
+                </a>
+                <hr>
             <div class="d-flex">
-              <a class="card-link mt-1" href="https://res.cloudinary.com/diarvpaib/image/upload/v1614176532/img2_uo6kq7.jpg">
-                <%= link_to 'See details', auction_path(@auctions), class: "nav-link" %></a>
-              <p class="pricetag mt-1">USD500</p>
+             <%= link_to 'See details', auction_path(auction) %>
+              <p class="pricetag mt-1">USD <%= auction.min_price %></p>
             </div>
           </div>
         </div>
+      <% end %>
     </div>
-
-
 
