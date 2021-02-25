@@ -21,6 +21,7 @@
     <h3>Nossos leilões mais quentes...</h3>
     </div>
 
+
     <div class="d-flex justify-content-center mb-3">
       <% @auctions.each do |auction| %>
         <div class="card m-2 card-main" style="width: 22rem;">
@@ -39,8 +40,8 @@
                 </a>
                 <hr>
             <div class="d-flex">
-              <%= link_to 'See details', auction_path(auction) %>
-                <p class="pricetag mt-1">USD <%= auction.min_price %></p>
+             <%= link_to 'See details', auction_path(auction) %>
+              <p class="pricetag mt-1">USD <%= auction.min_price %></p>
             </div>
           </div>
         </div>
