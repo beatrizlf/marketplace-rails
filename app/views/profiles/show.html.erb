@@ -1,6 +1,11 @@
-<div class='container'>
-  <h1>Welcome</h1>
+<div class='container mt-4'>
+  <h1>Welcome, <%= "#{current_user.first_name} #{current_user.last_name}!" %>  </h1>
+    <p>Email: <%= current_user.email  %></p>
+    <p>Endereço: <%= current_user.address %></p>
   <%= link_to 'Edit', edit_user_registration_path, class:'btn btn-primay' %>
+
+
+
 
 
   <h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
