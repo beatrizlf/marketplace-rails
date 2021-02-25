@@ -22,7 +22,8 @@
         <% elsif auction.visible %>
           <p>Começou o leilão!</p>
           <p>Lances neste leilão: <%= auction.bids.count %></p>
-            <p>último lance: <%= auction.bids.last.value %></p>
+            <p>último lance: <%= auction.bids.last&.value %></p>
+            <%= render 'bids/form', bid: @bid, auction: @auction %>  
             <button class='btn btn-warning'>
               <%= "Fim do Leilão: #{auction.deadline.strftime("%b %d, %Y %H:%M")}" %>
             </button>
