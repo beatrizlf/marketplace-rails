@@ -15,6 +15,7 @@
         </div>
         <p><%= auction.description %></p>
         <p><%= "$ #{auction.min_price},00" %></p>
+        <p><%= auction.user.bids %></p>
         <% unless auction.visible %>
         <%= link_to 'Back to Auctions', auctions_path, class: 'btn btn-success' %>
         <%= link_to 'Edit Auction', edit_auction_path(auction), class: "btn btn-secondary" %>

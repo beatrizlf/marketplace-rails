@@ -3,7 +3,7 @@ class AuctionsController < ApplicationController
   before_action :find_auction, only: [:show, :edit, :destroy, :update]
 
   def index
-    @auctions = Auction.all
+    @auctions = Auction.where(visible: true)
   end
 
   def show
