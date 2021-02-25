@@ -17,7 +17,7 @@ class Auction < ApplicationRecord
   def finish_auction
     if self.deadline < Date.today
       self.update(finished: true)
-      winner = self.bids.order('value DESC').first     # pegar todos os bids da auction, ordernar pelo valor (desc) e o maior será o winning_bid
+      winner = best_bid     # pegar todos os bids da auction, ordernar pelo valor (desc) e o maior será o winning_bid
       winner.update(winning_bid: true)
     end
   end
@@ -26,5 +26,9 @@ class Auction < ApplicationRecord
     Auction.all.each do |auction|
       auction.finish_auction
     end
+  end
+
+  def best_bid
+    self.bids.order('value DESC').first
   end
 end

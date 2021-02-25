@@ -1,6 +1,6 @@
 <div class="container">
   <%= simple_form_for [@auction, @bid] do |f| %> 
-    <%= f.input :value, input_html: { value: (@auction.min_price.to_i + 1).to_s } %>
+    <%= f.input :value, input_html: { value: (@min_value.to_i + 1).to_s } %>
     <%= f.submit  "add bid", class: "btn btn-primary" %>
   <% end %>
 </div>
