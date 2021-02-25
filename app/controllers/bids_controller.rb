@@ -9,13 +9,13 @@ class BidsController < ApplicationController
   end
 
   def create
-    @bid = Bid.new
-    @auction = Auction.find(params[:auction_id])
-    @bid.auction = @auction
+    @bid = Bid.new(bid_params)
+    @bid.auction_id = params[:auction_id]
+    @auction = @bid.auction
+    @bid.winning_bid = false
     @bid.user = current_user
-
     if @bid.save
-      redirect_to bids_path(@auction)
+      redirect_to auction_path(@auction), notice: "Parabéns! Seu lance foi computado!"
     else
       render :new
     end
@@ -28,6 +28,6 @@ class BidsController < ApplicationController
   end
 
   def bid_params
-    params.require(:bid).permit(:value)
+    params.require(:bid).permit(:value, :auction_id)
   end
 end
