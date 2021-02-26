@@ -1,50 +1,41 @@
-
-    <div class="container">
-      <div class="content-fluid mt-3 mb-3">
-        <div class="banner" style="width: 75%; height: 350px;  background-image: url(https://res.cloudinary.com/diarvpaib/image/upload/v1614113111/pexels-pixabay-163036_lho5on.jpg);">
-        </div>
-
-          <div class="container2 mr-5">
-            <h1>Auction Figures</h1>
-              <p>Welcome to the best action figure auction website.
-                Here you will find the best and sometimes some rare finds.
-                <br>
-                Sign in for the fun to start!
-              </p>
-          </div>
+<div class='banner d-flex align-items-center justify-content-center'>
+    <div class='text-center' style='margin-top: 8%;'>
+      <h1>AUCTION FIGURES</h1>
+      <p>BUY.SELL.ENJOY</p>
+      <div class='text-center'>
+      <%= link_to "Go to Auctions", auctions_path, class: 'btn-flat' %>
       </div>
     </div>
-    <br>
-    <hr>
+</div>
 
-    <div class="mt-3 mb-3">
-    <h3>Nossos leilões mais quentes...</h3>
-    </div>
+<div class='text-center m-5'>
+  <h3>CHECK OUR HOTTEST AUCTIONS</h3>
+</div>
 
 
-    <div class="d-flex justify-content-center mb-3">
-      <% @auctions.each do |auction| %>
-        <div class="card m-2 card-main" style="width: 22rem;">
-          <div class="card-image">
-            <% if auction.photos.any? %>
-            <%= cl_image_tag auction.photos.first.key, class: 'card-img-top' %>
-            <% else %>
-            <img class="card-img-top" src="https://res.cloudinary.com/diarvpaib/image/upload/v1614176532/img2_uo6kq7.jpg">
-            <% end %>
-          </div>
+<div class="d-flex justify-content-center mb-3">
+  <% @auctions.each do |auction| %>
+    <div class="card m-2 card-main" style="width: 22rem;">
+      <div class="card-image">
+        <% if auction.photos.any? %>
+        <%= cl_image_tag auction.photos.first.key, class: 'card-img-top' %>
+        <% else %>
+        <img class="card-img-top" src="https://res.cloudinary.com/diarvpaib/image/upload/v1614176532/img2_uo6kq7.jpg">
+        <% end %>
+      </div>
 
-          <div class="card-body">
-            <a class="card-link card-title">
-              <h5 class="card-title"><%= auction.name %></h5>
-              <p>This figure is from <%= auction.category %>. <%= auction.description %>.</p>
-                </a>
-                <hr>
-            <div class="d-flex">
-             <%= link_to 'See details', auction_path(auction) %>
-              <p class="pricetag mt-1">USD <%= auction.min_price %></p>
-            </div>
-          </div>
+      <div class="card-body">
+        <a class="card-link card-title">
+          <h5 class="card-title"><%= auction.name %></h5>
+          <p>This figure is from <%= auction.category %>. <%= auction.description %>.</p>
+            </a>
+            <hr>
+        <div class="d-flex">
+          <%= link_to 'See details', auction_path(auction) %>
+          <p class="pricetag mt-1">USD <%= auction.min_price %></p>
         </div>
-      <% end %>
+      </div>
     </div>
+  <% end %>
+</div>
 
