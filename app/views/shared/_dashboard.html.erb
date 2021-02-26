@@ -1,0 +1,101 @@
+<!-- Container principal da pagina de dashboard. Toda alteracao de estilo sera feita nesse arquivo.
+  ------------------------------------------------------------------------------------------------
+  ------------------------------------------------------------------------------------------------>
+
+<!-- Para alterar o container de Welcome -->
+<div class="container">
+  <h1 class="text-center mt-5">Welcome, <%= "#{current_user.first_name} #{current_user.last_name}!"%></h1>
+  <div class="row py-4 my-4 w-100 d-flex justify-content-between">
+
+
+<!-- Para alterar o container de photo -->
+
+    <div class="auction_container_photo col-3 bg-light mr-1 p-2 d-flex flex-wrap justify-content-center">
+      <% if current_user.photo.attached? %>
+        <div class="d-flex justify-content-center">
+          <%= cl_image_tag(current_user.photo.key, :transformation=>[
+          {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"crop"},
+          {:width=>200, :crop=>"scale"}
+          ],class:"avatar_profile py-3") %>
+        </div>
+      <% else %>
+
+        <div class="d-flex justify-content-center">
+          <%= cl_image_tag("04u12nv8sqw0utukzeh7e6azm9rp", :transformation=>[
+          {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"crop"},
+          {:width=>200, :crop=>"scale"}
+          ],class:"avatar_profile py-3") %>
+        </div>
+      <% end %>
+
+      <div class="w-100">
+        <h3 class="p-2"><%= "#{current_user.first_name} #{current_user.last_name}" %></h3>
+      </div>
+    </div>
+
+<!---Para Editar todas as informacoes dentro do Account Details -->
+    <div class="auction_container col-8 bg-light ml-1">
+      <div class="row d-block">
+        <h2 class="text-center ml-4 mt-3">Account Details</h2>
+      </div>
+      <div>
+        <p class="text-left ml-2 mt-2">First Name: <%= current_user.first_name  %></p>
+        <p class="text-left ml-2">Last Name: <%= current_user.last_name  %></p>
+        <p class="text-left ml-2">Email: <%= current_user.email  %></p>
+        <%= link_to 'Edit', edit_user_registration_path, class: 'btn btn-primary w-100 mt-2' %>
+      </div>
+    </div>
+  </div>
+
+<!-- Para Editar todas as informacoes dentro dos my auctions -->
+  <div class="text"><h1><strong>My Auctions</strong></h1></div>
+    <p>Você tem <%= @auctions.count %> produtos à venda</p>
+    <div class="my_auction row py-4 my-4 bg-light">
+      <div class="d-flex flex-wrap mb-3">
+          <% current_user.auctions.each do |auction| %>
+        <div class="card m-2 card-main" style="width: 22rem;">
+           <div class="card-image">
+              <%= cl_image_tag auction.photos.first.key, class: 'card-img-top' if auction.photos.attached? %>
+           </div>
+           <div class="card-body">
+            <a class="card-link card-title">
+              <h5 class="card-title"><%= auction.name %></h5>
+              <p>This figure is from <%= auction.category %>. <%= auction.description %>.</p>
+                </a>
+                <hr>
+
+            <div class="d-flex">
+             <%= link_to 'See details', auction_path(auction) %>
+              <p class="pricetag mt-1">US$ <%= auction.min_price %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+<!--Para Editar todas as informacoes de estilo dentro do My bids -->
+  <div class="text"><h1><strong>My Bids</strong></h1></div>
+    <p>Até o momento, Você ofertou <%= @bids.count %> vezes</p>
+      <div class="my_bids row py-4 my-4 bg-light">
+        <div class="d-flex flex-wrap mb-3">
+          <% @bids.each do |bid| %>
+            <div class="card m-2 card-main" style="width: 22rem;">
+              <div class="card-image">
+                <%= cl_image_tag bid.auction.photos.first.key, class: 'card-img-top' if bid.auction.photos.attached? %>
+              </div>
+
+              <div class="card-body">
+                <a class="card-link card-title">
+                  <h5 class="card-title"><%= bid.auction.name %></h5>
+                <div class="d-flex">
+                 <%= link_to 'See details', auction_path(bid.auction) %>
+                  <p class="pricetag mt-1">US$ <%= bid.auction.min_price %></p>
+                </div>
+              </div>
+            </div>
+            <% end %>
+        </div>
+      </div>
+  </div>
+
