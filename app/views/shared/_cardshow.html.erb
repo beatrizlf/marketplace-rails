@@ -17,7 +17,7 @@
         <% if !auction.visible  && auction.user == current_user %>
           <%= link_to 'Edit Auction', edit_auction_path(auction), class: "btn btn-secondary" %>
           <%= link_to "Start Auction", start_auction_path(auction), method: :post, class: 'btn btn-primary' %>
-        <% elsif auction.visible %>
+        <% elsif auction.visible? %>
           <p><%= render 'shared/timer', deadline: @auction.deadline.strftime("%b %d, %Y %H:%M:%S") %></p><br>
           <% unless auction.user == current_user %>
           <p><%= render 'bids/form', bid: @bid, auction: @auction %></p><br>
