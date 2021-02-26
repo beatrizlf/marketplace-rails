@@ -17,10 +17,7 @@
           {:width=>200, :crop=>"scale"}
           ],class:"avatar_profile py-3") %>
         </div>
-
       <% end %>
-
-
 
       <div class="w-100">
         <h3 class="p-2"><%= "#{current_user.first_name} #{current_user.last_name}" %></h3>
@@ -64,28 +61,42 @@
         </div>
       <% end %>
     </div>
+    </div>
 
 
-   <div class="row py-4 my-4 bg-light">
-   <h1>My Bids</h1>
+  <div class="text"><h1>My Bids</h1></div>
+    <div class="row py-4 my-4 bg-light">
+      <p class="text-left ml-2 mt-2">Até o momento, Você ofertou <%= @bids.count %> vezes</p>
+
+       <div class="d-flex justify-content-center mb-3">
+      <% @bids.each do |bid| %>
+        <div class="card m-2 card-main" style="width: 22rem;">
+          <div class="card-image">
+            <%= cl_image_tag bid.auction.photos.first.key, class: 'card-img-top' %>
+          </div>
+
+          <div class="card-body">
+            <a class="card-link card-title">
+              <h5 class="card-title"><%= bid.auction.name %></h5>
+            <div class="d-flex">
+             <%= link_to 'See details', auction_path(bid.auction) %>
+              <p class="pricetag mt-1">USD <%= bid.auction.min_price %></p>
+            </div>
+        </div>
+      <% end %>
+    </div>
+
+
+
+
+ <div class="row py-4 my-4 bg-light">
+   <h1>My winning Bids</h1>
     <% current_user.bids.where(winning_bid: true).each do |bid| %>
       <p><%= bid.auction.name %></p>
       <p><%= bid.auction.description %></p>
       <p><%= bid.value %></p>
     <% end %>
   </div>
-
-  <div class="text"><h1>My Auctions</h1></div>
-    <div class="row d-flex py-4 my-4 bg-light">
-
-      <p class="text-left ml-2 mt-2">Você tem <%= @auctions.count %> produtos à venda</p>
-
-
-    </div>
-  <div class="text"><h1>My Bids</h1></div>
-    <div class="row py-4 my-4 bg-light">
-      <p class="text-left ml-2 mt-2">Até o momento, Você ofertou <%= @bids.count %> vezes</p>
-
 
     </div>
 </div>
