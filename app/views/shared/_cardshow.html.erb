@@ -19,24 +19,25 @@
         </div>
 
         <div class="d-flex mt-4 justify-content-center">
-        <div class="mr-2">
-        <% if !auction.visible  && auction.user == current_user %>
-          <%= link_to 'Edit Auction', edit_auction_path(auction), class: "btn btn-secondary" %>
-        </div>
-
-        <div>
-          <%= link_to "Start Auction", start_auction_path(auction), method: :post, class: 'btn btn-primary' %>
-        </div>
-        </div>
-
-        <% elsif auction.visible %>
-
-          <p><%= render 'shared/timer', deadline: @auction.deadline.strftime("%b %d, %Y %H:%M:%S") %></p><br>
-          <div class="d-flex justify-content-center">
-          <p>Current Bids: <%= auction.bids.count %> &nbsp; Last Bid: US$<%= auction.bids.last&.value %></p>
+          <div class="mr-2">
+          <% if !auction.visible  && auction.user == current_user %>
+            <%= link_to 'Edit Auction', edit_auction_path(auction), class: "btn btn-secondary" %>
           </div>
+
+          <div>
+            <%= link_to "Start Auction", start_auction_path(auction), method: :post, class: 'btn btn-primary' %>
+
+          </div>
+         </div>
+
+        <% elsif auction.visible? %>
+          <p><%= render 'shared/timer', deadline: @auction.deadline.strftime("%b %d, %Y %H:%M:%S") %></p><br>
+          <% unless auction.user == current_user %>
+            <div class="d-flex justify-content-center">
+              <p>Current Bids: <%= auction.bids.count %> &nbsp; Last Bid: US$<%= auction.bids.last&.value %></p>
+            </div>
           <p><%= render 'bids/form', bid: @bid, auction: @auction %></p><br>
-        <% end %>
+          <% end %>
       </div>
     </div>
   </div>
