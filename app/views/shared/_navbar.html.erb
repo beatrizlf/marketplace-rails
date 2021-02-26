@@ -17,6 +17,7 @@
         </li>
         <li class="nav-item dropdown mt-2">
           <% if current_user.photo.attached? %>
+            <%= cl_image_tag current_user.photo.key, height: 300, width: 300 %>
             <img class="avatar dropdown-toggle mr-3" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src=<%=cl_image_path current_user.photo.key  %> />
           <% else %>
             <img class="avatar dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://res.cloudinary.com/diarvpaib/image/upload/v1614176532/img2_uo6kq7.jpg"/>
