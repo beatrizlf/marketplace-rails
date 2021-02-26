@@ -39,3 +39,20 @@
   padding: 1rem
 }
 
+
+#countdown li {
+  font-size: 10px;
+  padding: 0 !important;
+}
+
+#countdown ul {
+  border-style: solid;
+  border-color: $gold;
+}
+
+#bidbutton {
+  display: flex !important;
+  justify-content: center;
+  flex-direction: row;
+  padding-left: 130px;
+ }

@@ -10,24 +10,27 @@
         <div class="row title">
           <div class="col text-center">
             <h2><%= auction.name %></h2>
+            <hr>
             <p><%= auction.description %></p>
           </div>
         </div>
         <div class="d-flex justify-content-center">
-        <h5>Initial Price</h5>&nbsp;<%= "$#{auction.min_price},00" %>
+        <h5>Initial Price</h5>&nbsp;<%= "US$#{auction.min_price},00" %>
         </div>
+
         <% if !auction.visible  && auction.user == current_user %>
           <%= link_to 'Edit Auction', edit_auction_path(auction), class: "btn btn-secondary" %>
           <%= link_to "Start Auction", start_auction_path(auction), method: :post, class: 'btn btn-primary' %>
+
         <% elsif auction.visible %>
+
           <p><%= render 'shared/timer', deadline: @auction.deadline.strftime("%b %d, %Y %H:%M:%S") %></p><br>
+          <div class="d-flex justify-content-center">
+          <p>Current Bids: <%= auction.bids.count %> &nbsp; Last Bid: US$<%= auction.bids.last&.value %></p>
+          </div>
           <p><%= render 'bids/form', bid: @bid, auction: @auction %></p><br>
-          <p>Lances neste leilão: <%= auction.bids.count %></p>
-          <p>último lance: <%= auction.bids.last&.value %></p>
         <% end %>
       </div>
     </div>
   </div>
 </div>
-
-mudancas comecam agora....
