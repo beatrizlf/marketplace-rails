@@ -19,7 +19,9 @@
           <%= link_to "Start Auction", start_auction_path(auction), method: :post, class: 'btn btn-primary' %>
         <% elsif auction.visible %>
           <p><%= render 'shared/timer', deadline: @auction.deadline.strftime("%b %d, %Y %H:%M:%S") %></p><br>
+          <% unless auction.user == current_user %>
           <p><%= render 'bids/form', bid: @bid, auction: @auction %></p><br>
+          <% end %>
           <p>Lances neste leilão: <%= auction.bids.count %></p>
           <p>último lance: <%= auction.bids.last&.value %></p>
         <% end %>
