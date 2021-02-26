@@ -1,19 +1,21 @@
 <div class="container">
   <div class="card-show my-3 py-5">
     <div class="row">
-      <div class="col-md-6 text-center align-self-center">
+      <div class="col-md-6 text-center align-self-center" style="width: 494px; height: 575px;">
       <% if auction.photos.attached? %>
-        <%= cl_image_tag auction.photos.first.key, height: 300, width: 400, crop: :fill, class: 'img-show' %>
+        <%= cl_image_tag auction.photos.first.key, height: 605, width: 487, crop: :fill, class: 'img-show'  %>
       <% end %>
       </div>
       <div class="col-md-6 info">
         <div class="row title">
-          <div class="col">
+          <div class="col text-center">
             <h2><%= auction.name %></h2>
+            <p><%= auction.description %></p>
           </div>
         </div>
-        <p><%= auction.description %></p>
-        <button class="btn btn-lg btn-outline-primary"><%= "$ #{auction.min_price},00" %></button>
+        <div class="d-flex justify-content-center">
+        <h5>Initial Price</h5>&nbsp;<%= "$#{auction.min_price},00" %>
+        </div>
         <% if !auction.visible  && auction.user == current_user %>
           <%= link_to 'Edit Auction', edit_auction_path(auction), class: "btn btn-secondary" %>
           <%= link_to "Start Auction", start_auction_path(auction), method: :post, class: 'btn btn-primary' %>
@@ -23,7 +25,9 @@
           <p>Lances neste leilão: <%= auction.bids.count %></p>
           <p>último lance: <%= auction.bids.last&.value %></p>
         <% end %>
+      </div>
+    </div>
   </div>
-  </div>
- </div>
+</div>
 
+mudancas comecam agora....
