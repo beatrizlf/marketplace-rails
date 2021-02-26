@@ -1,9 +1,9 @@
 <div class="container">
-  <div class="card py-3">
+  <div class="card-show my-3 py-5">
     <div class="row">
       <div class="col-md-6 text-center align-self-center">
       <% if auction.photos.attached? %>
-        <%= cl_image_tag auction.photos.first.key, height: 300, width: 400, crop: :fill %>
+        <%= cl_image_tag auction.photos.first.key, height: 300, width: 400, crop: :fill, class: 'img-show' %>
       <% end %>
       </div>
       <div class="col-md-6 info">
@@ -11,22 +11,17 @@
           <div class="col">
             <h2><%= auction.name %></h2>
           </div>
-          <div class="col text-right"><a href="#"><i class="fa fa-heart-o"></i></a></div>
         </div>
         <p><%= auction.description %></p>
-        <p><%= "$ #{auction.min_price},00" %></p>
-        <%= link_to 'Back to Auctions', auctions_path, class: 'btn btn-success' %>
+        <button class="btn btn-lg btn-outline-primary"><%= "$ #{auction.min_price},00" %></button>
         <% if !auction.visible  && auction.user == current_user %>
           <%= link_to 'Edit Auction', edit_auction_path(auction), class: "btn btn-secondary" %>
           <%= link_to "Start Auction", start_auction_path(auction), method: :post, class: 'btn btn-primary' %>
         <% elsif auction.visible %>
-          <p>Começou o leilão!</p>
+          <p><%= render 'shared/timer', deadline: @auction.deadline.strftime("%b %d, %Y %H:%M:%S") %></p><br>
+          <p><%= render 'bids/form', bid: @bid, auction: @auction %></p><br>
           <p>Lances neste leilão: <%= auction.bids.count %></p>
-            <p>último lance: <%= auction.bids.last&.value %></p>
-            <%= render 'bids/form', bid: @bid, auction: @auction %>  
-            <button class='btn btn-warning'>
-              <%= "Fim do Leilão: #{auction.deadline.strftime("%b %d, %Y %H:%M")}" %>
-            </button>
+          <p>último lance: <%= auction.bids.last&.value %></p>
         <% end %>
   </div>
   </div>

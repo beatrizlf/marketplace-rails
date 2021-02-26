@@ -22,7 +22,7 @@ const timerCountdown = () => {
               countdown = document.getElementById("countdown"),
               content = document.getElementById("content");
 
-          headline.innerText = "It's my birthday!";
+          headline.innerText = "Auction finished!";
           countdown.style.display = "none";
           content.style.display = "block";
 

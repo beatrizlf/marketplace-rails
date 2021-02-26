@@ -13,6 +13,7 @@ h1 {
 li {
   display: inline-block;
   font-size: 20px;
+  color: $blue;
   list-style-type: none;
   padding: 10px;
   text-transform: uppercase;
@@ -23,17 +24,9 @@ li span {
   font-size: 20px;
 }
 
-.message {
-  font-size: 4rem;
-}
-
 #content {
   display: none;
   padding: 1rem;
-}
-
-.emoji {
-  padding: 0 .25rem;
 }
 
 @media all and (max-width: 768px) {
