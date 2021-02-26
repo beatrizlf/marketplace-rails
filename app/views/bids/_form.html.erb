@@ -1,6 +1,9 @@
-<div class="container">
-  <%= simple_form_for [@auction, @bid] do |f| %> 
-    <%= f.input :value, label: 'Your bid:', input_html: { value: (@min_value.to_i + 1).to_s } %>
-    <%= f.submit  "add bid", class: "btn btn-primary" %>
+  <div class="container">
+  <%= simple_form_for [@auction, @bid] do |f| %>
+  <%= f.input :value, label: 'Your bid: US$', input_html: { value: (@min_value.to_i + 1).to_s } %>
+  </div>
+  <div class="container w-100">
+    <%= f.submit  "Add bid", class: "btn btn-primary w-100" %>
   <% end %>
-</div>
+  </div>
+
